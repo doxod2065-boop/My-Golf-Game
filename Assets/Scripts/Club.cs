@@ -31,7 +31,7 @@ public class Club : MonoBehaviour
 
         transform.localEulerAngles = angles;
 
-        var direction = m_point.position - m_lastPointPosition;
+        m_direction = (m_point.position - m_lastPointPosition).normalized;
         m_lastPointPosition = m_point.position;
     }
 

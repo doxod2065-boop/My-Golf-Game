@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 1694281916305044017}
   - component: {fileID: -6599568275865697535}
   - component: {fileID: 4482491625370527887}
+  - component: {fileID: 3544496982252008342}
   m_Layer: 0
   m_Name: Stone 01
   m_TagString: Untagged
@@ -148,10 +149,22 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6991494665010137633}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 48c62ec1dd668494c9bf851bbf13a919, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::StoneLogger
   m_groundTag: Ground
   m_clubTag: Club
+--- !u!114 &3544496982252008342
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6991494665010137633}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f5e7e86a393eb904fbb1f0c1a62acbe6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Stone
