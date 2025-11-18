@@ -4,14 +4,17 @@ using UnityEngine;
 
 public class LevelController : MonoBehaviour
 {
+    public event Action Finished;
+
     [SerializeField] private int m_missedCount;
     [SerializeField] [Min(0)] private float m_spawnRate = 0.5f;
     [SerializeField] private StoneSpawner m_stoneSpawner;
     [SerializeField] private TextMeshProUGUI m_scoreText;
+    [SerializeField] private ScoreManager m_scoreManager;
 
     private float m_time;
     private int m_currentMissedCount;
-    private int m_score;
+    private 
 
     private void Awake()
     {
@@ -40,12 +43,12 @@ public class LevelController : MonoBehaviour
         stone.Missed -= OnMissed;
 
         m_score += 10;
-        UpdateScoreUI();
-        Debug.Log($"Your Score! Total points: {m_score}");
+        m_scoreManager.Increase();
     }
 
     private void OnMissed(Stone stone)
     {
+
         stone.Hit -= OnHitStone;
         stone.Missed -= OnMissed;
 
@@ -54,6 +57,11 @@ public class LevelController : MonoBehaviour
         {
             Debug.Log($"Game Over! Final score: {m_score}");
         }
+    }
+
+    private void UnsubscrideStone(Stone stone)
+    {
+        if 
     }
 
     private void UpdateScoreUI()

@@ -1,0 +1,26 @@
+using UnityEngine;
+
+public class BootstrapState : MonoBehaviour
+{
+    [SerializeField] private PlayerController playerController;
+    [SerializeField] private LevelController m_playerController;
+
+    private GameStateMachine m_gameStateMachine
+    public void Initialize(GameStateMachine gameStateMachine)
+    {
+        m_playerController.enabled = false;
+        m_playerController.enabled = false;
+
+        m_gameStateMachine = gameStateMachine;
+    }
+
+    public void Enter()
+    {
+        m_gameStateMachine.Enter<MainMenuState>();
+    }
+
+    public void Exit()
+    {
+
+    }
+}

@@ -13,6 +13,7 @@ public class Club : MonoBehaviour
 
     private Vector3 m_direction;
     private Vector3 m_lastPointPosition;
+    private bool m_isDown;
 
     private void FixedUpdate()
     {
@@ -20,7 +21,7 @@ public class Club : MonoBehaviour
 
         var angles = transform.localEulerAngles;
 
-        if (Input.GetKey(KeyCode.RightArrow))
+        if (m_isDown)
         {
             angles.z = Rotate(angles.z, m_minAngleZ);
         }
@@ -47,4 +48,8 @@ public class Club : MonoBehaviour
             stone.GetComponent<Rigidbody>().AddForce(m_power * m_direction, ForceMode.Force);
         }
     }
+
+    public void Down() => m_isDown = true;
+
+    public void Up() => m_isDown = false;
 }
