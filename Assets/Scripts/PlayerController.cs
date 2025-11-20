@@ -8,11 +8,11 @@ public class PlayerController : MonoBehaviour
     {
         if (Input.GetKey(KeyCode.RightArrow))
         {
-            m_club.Execute();
+            m_club.Down();
         }
-        else
+        else 
         {
-
+            m_club.Up();
         }
     }
 }

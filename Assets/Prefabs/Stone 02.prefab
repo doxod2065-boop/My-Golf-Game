@@ -13,7 +13,6 @@ GameObject:
   - component: {fileID: 3082013637528622398}
   - component: {fileID: -643055852571147839}
   - component: {fileID: 1499884536549652279}
-  - component: {fileID: -1368833997699873062}
   - component: {fileID: 4648104883364945683}
   m_Layer: 0
   m_Name: Stone 02
@@ -32,7 +31,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
+  m_LocalScale: {x: 0.58485, y: 0.58485, z: 0.58485}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
@@ -101,7 +100,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6424446073737272832}
   serializedVersion: 5
-  m_Mass: 0.1
+  m_Mass: 0.2
   m_LinearDamping: 0
   m_AngularDamping: 0.05
   m_CenterOfMass: {x: 0, y: 0, z: 0}
@@ -127,7 +126,7 @@ MeshCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6424446073737272832}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 2143f3b9ac6ba00409a6c3e759bb0953, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -142,20 +141,6 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 4300000, guid: 7110966a22a1bd74c894def7bbb4b8cb, type: 3}
---- !u!114 &-1368833997699873062
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6424446073737272832}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 48c62ec1dd668494c9bf851bbf13a919, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::StoneLogger
-  m_groundTag: Ground
-  m_clubTag: Club
 --- !u!114 &4648104883364945683
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -168,3 +153,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f5e7e86a393eb904fbb1f0c1a62acbe6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Stone
+  m_isSpecialStone: 0
+  m_scoreValue: 1
+  m_specialMaterial: {fileID: 0}

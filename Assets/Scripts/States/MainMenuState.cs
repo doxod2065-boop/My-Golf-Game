@@ -28,6 +28,6 @@ public class MainMenuState : MonoBehaviour
 
     private void OnClicked()
     {
-        m_gameStateMachine.Enter<Game>;
+        m_gameStateMachine.Enter<GameplayState>();
     }
 }

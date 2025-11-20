@@ -1,6 +1,8 @@
+using NUnit.Framework;
 using System;
 using TMPro;
 using UnityEngine;
+using System.Collections.Generic;
 
 public class LevelController : MonoBehaviour
 {
@@ -11,16 +13,30 @@ public class LevelController : MonoBehaviour
     [SerializeField] private StoneSpawner m_stoneSpawner;
     [SerializeField] private TextMeshProUGUI m_scoreText;
     [SerializeField] private ScoreManager m_scoreManager;
+    [SerializeField] private float m_extraDelayOnMiss = 1f;
 
     private float m_time;
     private int m_currentMissedCount;
-    private 
+    private List<Stone> m_stones;
 
     private void Awake()
     {
+        m_stones = new List<Stone>();
+    }
+
+    public void Initialize()
+    {
         m_currentMissedCount = m_missedCount;
-        m_score = 0;
-        UpdateScoreUI();
+
+        if (m_stoneSpawner != null)
+        {
+            m_stoneSpawner.ResetToBaseChance();
+        }
+
+        if (m_scoreManager != null)
+        {
+            m_scoreManager.Reset();
+        }
     }
 
     private void Update()
@@ -30,6 +46,7 @@ public class LevelController : MonoBehaviour
         if (m_time >= m_spawnRate)
         {
             Stone stone = m_stoneSpawner.Spawn();
+            m_stones.Add(stone);
 
             stone.Hit += OnHitStone;
             stone.Missed += OnMissed;
@@ -39,36 +56,40 @@ public class LevelController : MonoBehaviour
     }
     private void OnHitStone(Stone stone)
     {
-        stone.Hit -= OnHitStone;
-        stone.Missed -= OnMissed;
+        UnsubscribeStone(stone);
 
-        m_score += 10;
-        m_scoreManager.Increase();
+        if (stone.IsSpecial)
+        {
+            m_scoreManager.Increase(stone.ScoreValue);
+        }
+        else
+        {
+            m_scoreManager.Increase();
+        }
     }
 
     private void OnMissed(Stone stone)
     {
-
-        stone.Hit -= OnHitStone;
-        stone.Missed -= OnMissed;
-
+        UnsubscribeStone(stone);
+        m_time -= m_extraDelayOnMiss;
         m_currentMissedCount--;
         if (m_currentMissedCount <= 0)
         {
-            Debug.Log($"Game Over! Final score: {m_score}");
+            Debug.Log($"Game Over!");
+            Finished?.Invoke();
+
+            foreach (var item in m_stones)
+            {
+                Destroy(item.gameObject);
+            }
+
+            m_stones.Clear();
         }
     }
 
-    private void UnsubscrideStone(Stone stone)
+    private void UnsubscribeStone(Stone stone)
     {
-        if 
-    }
-
-    private void UpdateScoreUI()
-    {
-        if (m_scoreText != null)
-        {
-            m_scoreText.text = $"Score: {m_score}";
-        }
+        stone.Hit -= OnHitStone;
+        stone.Missed -= OnMissed;
     }
 }

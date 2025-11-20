@@ -1,3 +1,4 @@
+using System;
 using System.Net;
 using System.Runtime.CompilerServices;
 using UnityEditor.Experimental.GraphView;
@@ -17,7 +18,7 @@ public class Club : MonoBehaviour
 
     private void FixedUpdate()
     {
-        Application.targetFrameRate = 30;
+       // Application.targetFrameRate = 30;
 
         var angles = transform.localEulerAngles;
 
@@ -34,20 +35,22 @@ public class Club : MonoBehaviour
 
         m_direction = (m_point.position - m_lastPointPosition).normalized;
         m_lastPointPosition = m_point.position;
-    }
 
-        private float Rotate(float angleZ, float target)
-        {
-        return Mathf.MoveTowardsAngle(angleZ, target, m_speed * Time.deltaTime);
-        }
+        m_isDown = false;
+    }
 
     private void OnCollisionEnter(Collision other)
     {
         if (other.gameObject.TryGetComponent<Stone>(out var stone))
         {
-            stone.GetComponent<Rigidbody>().AddForce(m_power * m_direction, ForceMode.Force);
+            stone.AddForce(m_power * m_direction);
         }
     }
+
+    private float Rotate(float angleZ, float target)
+        {
+        return Mathf.MoveTowardsAngle(angleZ, target, m_speed * Time.deltaTime);
+        }
 
     public void Down() => m_isDown = true;
 

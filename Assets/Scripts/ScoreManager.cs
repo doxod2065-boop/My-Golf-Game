@@ -6,7 +6,7 @@ public class ScoreManager : MonoBehaviour
     public event Action<int> ScoreChanged;
     public int m_score;
 
-    public int score
+    public int Score
     {
         get => m_score;
         private set
@@ -16,8 +16,10 @@ public class ScoreManager : MonoBehaviour
             ScoreChanged?.Invoke(value);
         }
     }
-    public void Increase() => score++;
 
-    public void Reset() => score = 0;
+    public void Increase() => Score++;
 
+    public void Increase(int amount) => Score += amount;
+
+    public void Reset() => Score = 0;
 }

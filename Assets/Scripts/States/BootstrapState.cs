@@ -2,14 +2,14 @@ using UnityEngine;
 
 public class BootstrapState : MonoBehaviour
 {
-    [SerializeField] private PlayerController playerController;
-    [SerializeField] private LevelController m_playerController;
+    [SerializeField] private PlayerController m_playerController;
+    [SerializeField] private LevelController m_levelController;
 
-    private GameStateMachine m_gameStateMachine
+    private GameStateMachine m_gameStateMachine;
     public void Initialize(GameStateMachine gameStateMachine)
     {
         m_playerController.enabled = false;
-        m_playerController.enabled = false;
+        m_levelController.enabled = false;
 
         m_gameStateMachine = gameStateMachine;
     }
