@@ -1,12 +1,12 @@
 using UnityEngine;
 
-public class BootstrapState : MonoBehaviour
+public class BootstrapState : StateBase
 {
     [SerializeField] private PlayerController m_playerController;
     [SerializeField] private LevelController m_levelController;
 
     private GameStateMachine m_gameStateMachine;
-    public void Initialize(GameStateMachine gameStateMachine)
+    public override Initialize(GameStateMachine gameStateMachine)
     {
         m_playerController.enabled = false;
         m_levelController.enabled = false;
@@ -14,12 +14,12 @@ public class BootstrapState : MonoBehaviour
         m_gameStateMachine = gameStateMachine;
     }
 
-    public void Enter()
+    public override Enter()
     {
         m_gameStateMachine.Enter<MainMenuState>();
     }
 
-    public void Exit()
+    public override Exit()
     {
 
     }

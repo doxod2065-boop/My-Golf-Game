@@ -2,7 +2,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class GameOverState : MonoBehaviour
+public class GameOverState : StateBase
 {
     [SerializeField] private TextMeshProUGUI m_scoreText;
     [SerializeField] private Button m_backGameMenu;
@@ -11,20 +11,26 @@ public class GameOverState : MonoBehaviour
 
     private GameStateMachine m_gameStateMachine;
 
-    public void Initialize(GameStateMachine gameStateMachine)
+    public override void Initialize(GameStateMachine gameStateMachine)
     {
         m_gameStateMachine = gameStateMachine;
         m_gameOverPanel.gameObject.SetActive(false);
     }
 
-    public void Enter()
+    public override void Enter()
     {
         m_scoreText.text = m_scoreManager.m_score.ToString();
         m_backGameMenu.onClick.AddListener(OnClicked);
         m_gameOverPanel.gameObject.SetActive(true);
+        var highScore = PlayerPrefs.SetInt("High Score:", 0);
+
+        if (highScore < m_scoreManager.score)
+        {
+            PlayerPrefs.SetInt("Score", m_scoreManager.score);
+        }
     }
 
-    public void Exit()
+    public override void Exit()
     {
         m_gameOverPanel.gameObject.SetActive(false);
     }

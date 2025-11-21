@@ -1,8 +1,9 @@
 using TMPro;
 using UnityEngine;
 
-public class GameplayState : MonoBehaviour
+public class GameplayState : StateBase
 {
+    [SerializeField] GameObject m_gameplayPanel;
     [SerializeField] private TextMeshProUGUI m_scoreText;
     [SerializeField] private ScoreManager m_scoreManager;
     [SerializeField] private LevelController m_levelController;
@@ -10,14 +11,16 @@ public class GameplayState : MonoBehaviour
 
     private GameStateMachine m_gameStateMachine;
 
-public void Initialize(GameStateMachine gameStateMachine)
+    public override void Initialize()
     {
-        m_scoreText.gameObject.SetActive(false);
         m_gameStateMachine = gameStateMachine;
+        m_gameplayPanel.gameObject.SetActive(false);
     }
 
-    public void Enter()
+    public override void Enter()
     {
+        m_gameplayPanel.gameObject.SetActive(true);
+
         m_scoreManager.Reset();
         m_scoreManager.ScoreChanged += OnScoreChanged;
 
@@ -33,11 +36,12 @@ public void Initialize(GameStateMachine gameStateMachine)
 
     private void OnFinished() => m_gameStateMachine.Enter<GameOverState>();
 
-    public void Exit()
+    public override void Exit()
     {
         m_levelController.enabled = false;
         m_playerController.enabled = false;
         m_scoreText.gameObject.SetActive(false);
+        m_gameplayPanel.gameObject.SetActive(false);
         m_levelController.Finished -= OnFinished;
     }
 

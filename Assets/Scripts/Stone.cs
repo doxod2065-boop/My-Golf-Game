@@ -13,6 +13,7 @@ public class Stone : MonoBehaviour
     [SerializeField] private bool m_isSpecialStone = false;
     [SerializeField] private int m_scoreValue = 1;
     [SerializeField] private Material m_specialMaterial;
+    [SelectionBase] private StoneDate m_stone;
 
     private Rigidbody m_rigidbody;
 

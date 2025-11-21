@@ -21,5 +21,16 @@ public class ScoreManager : MonoBehaviour
 
     public void Increase(int amount) => Score += amount;
 
+    public void UpdateHighScore()
+    {
+        var highScore = PlayerPrefs.GetInt(GlobalConstants.HighScore, 0);
+
+        if (highScore < value)
+        {
+            PlayerPrefs.SetInt(GlobalConstants.HighScore, value)
+            RecordChanged?.Invoke(value);
+        }
+    }
+
     public void Reset() => Score = 0;
 }
