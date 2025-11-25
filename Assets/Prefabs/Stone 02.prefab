@@ -153,6 +153,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f5e7e86a393eb904fbb1f0c1a62acbe6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Stone
-  m_isSpecialStone: 0
-  m_scoreValue: 1
-  m_specialMaterial: {fileID: 0}
+  m_stoneData: {fileID: 11400000, guid: f54d0b2cfa3542c4c8dcf64e0b5bfca9, type: 2}

@@ -1,31 +1,39 @@
+using System;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
 public class PlayerController : MonoBehaviour
 {
     [SerializeField] private Club m_club;
+    [SerializeField] private EventTrigger m_hitButton;
 
     private bool m_isDown;
 
     private void Start()
     {
+        if (m_club == null)
+        {
+            return;
+        }
+
         var entryDown = new EventTrigger.Entry();
         entryDown.eventID = EventTriggerType.PointerDown;
 
         var entryUp = new EventTrigger.Entry();
-        entryDown.eventID = EventTriggerType.PointerUp;
+        entryUp.eventID = EventTriggerType.PointerUp;
 
-        entry
+        entryUp.callback.AddListener(OnPointerUp);
+        entryDown.callback.AddListener(OnPointerDown);
+
+        m_hitButton.triggers.Add(entryDown);
+        m_hitButton.triggers.Add(entryUp);
     }
-
-    private void OnPointerDown()
-
-    private void OnPointerDown()
-
 
     private void Update()
     {
         // if (Input.GetKey(KeyCode.RightArrow))
+        if (m_club == null) return;
+
         if (m_isDown)
         {
             m_club.Down();
@@ -39,5 +47,9 @@ public class PlayerController : MonoBehaviour
         private void Down() => m_isDown = true;
 
         private void Up() => m_isDown = false;
+
+    private void OnPointerDown(BaseEventData arg0) => Down();
+
+    private void OnPointerUp(BaseEventData arg0) => Up();
 }
 

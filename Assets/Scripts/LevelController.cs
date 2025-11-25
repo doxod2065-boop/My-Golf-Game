@@ -58,7 +58,19 @@ public class LevelController : MonoBehaviour
     {
         UnsubscribeStone(stone);
 
-        if (stone.IsSpecial)
+        if (stone.IsBlackStone)
+        {
+            m_scoreManager.Increase(stone.ScoreValue);
+        }
+        else if (stone.IsHeartStone)
+        {
+            m_currentMissedCount++;
+        }
+        else if (stone.IsSmallStone)
+        {
+            m_scoreManager.Increase(stone.ScoreValue);
+        }
+        else if (stone.IsSpecial)
         {
             m_scoreManager.Increase(stone.ScoreValue);
         }

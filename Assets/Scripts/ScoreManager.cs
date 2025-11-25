@@ -4,6 +4,8 @@ using UnityEngine;
 public class ScoreManager : MonoBehaviour
 {
     public event Action<int> ScoreChanged;
+    public event Action<int> HighScoreChanged;
+
     public int m_score;
 
     public int Score
@@ -17,20 +19,23 @@ public class ScoreManager : MonoBehaviour
         }
     }
 
+    public int highScore
+    {
+        get => PlayerPrefs.GetInt(GlobalConstants.HighScore, 0);
+        private set
+        {
+            if (highScore < value)
+            {
+                PlayerPrefs.SetInt(GlobalConstants.HighScore, value);
+                HighScoreChanged?.Invoke(value);
+            }
+        }
+    }
+
     public void Increase() => Score++;
 
     public void Increase(int amount) => Score += amount;
 
-    public void UpdateHighScore()
-    {
-        var highScore = PlayerPrefs.GetInt(GlobalConstants.HighScore, 0);
-
-        if (highScore < value)
-        {
-            PlayerPrefs.SetInt(GlobalConstants.HighScore, value)
-            RecordChanged?.Invoke(value);
-        }
-    }
-
+    public void UpdateHighScore() => highScore = Score;
     public void Reset() => Score = 0;
 }

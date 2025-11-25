@@ -8,19 +8,20 @@ public class MainMenuState : StateBase
 
     private GameStateMachine m_gameStateMachine;
 
-    public override Initialize(GameStateMachine gameStateMachine)
+    public override void Initialize(GameStateMachine gameStateMachine)
     {
         m_mainMenuRoot.SetActive(false);
         m_gameStateMachine = gameStateMachine;
     }
 
-    public override Enter()
+    public override void Enter()
     {
+        AudioManager.Instance.PlayMainMenuMusic();
         m_mainMenuRoot.SetActive(true);
         m_playButton.onClick.AddListener(OnClicked);
     }
 
-    public override Exit()
+    public override void Exit()
     {
         m_mainMenuRoot.SetActive(false);
         m_playButton.onClick.RemoveListener(OnClicked);

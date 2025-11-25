@@ -20,14 +20,9 @@ public class GameOverState : StateBase
     public override void Enter()
     {
         m_scoreText.text = m_scoreManager.m_score.ToString();
+        m_scoreManager.UpdateHighScore();
         m_backGameMenu.onClick.AddListener(OnClicked);
         m_gameOverPanel.gameObject.SetActive(true);
-        var highScore = PlayerPrefs.SetInt("High Score:", 0);
-
-        if (highScore < m_scoreManager.score)
-        {
-            PlayerPrefs.SetInt("Score", m_scoreManager.score);
-        }
     }
 
     public override void Exit()
