@@ -30,8 +30,8 @@ Transform:
   m_GameObject: {fileID: 6991494665010137633}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.59545, y: 0.59545, z: 0.59545}
+  m_LocalPosition: {x: 0.0039791, y: 0.0013389, z: -0.0023817}
+  m_LocalScale: {x: 0.6670231, y: 0.6670231, z: 0.6670231}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
@@ -153,4 +153,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f5e7e86a393eb904fbb1f0c1a62acbe6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Stone
-  m_stoneData: {fileID: 11400000, guid: f54d0b2cfa3542c4c8dcf64e0b5bfca9, type: 2}
+  m_isSpecialStone: 0
+  m_isBlackStone: 0
+  m_isSmallStone: 0
+  m_isHeartStone: 0
+  m_isBombStone: 0
+  m_scoreValue: 1
+  m_specialMaterial: {fileID: 0}
+  m_blackStoneMaterial: {fileID: 0}
+  m_smallStoneMaterial: {fileID: 0}
+  m_heartStoneMaterial: {fileID: 0}
+  m_bombStoneMaterial: {fileID: 0}

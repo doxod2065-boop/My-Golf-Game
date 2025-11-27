@@ -21,6 +21,8 @@ public class LevelController : MonoBehaviour
 
     private void Awake()
     {
+        Application.targetFrameRate = 60;
+
         m_stones = new List<Stone>();
     }
 
